@@ -9,8 +9,8 @@
 /* Some generic, cross-platform types. */
 
 struct _MMPoint {
-	size_t x;
-	size_t y;
+	int x;
+	int y;
 };
 
 typedef struct _MMPoint MMPoint;
@@ -29,11 +29,12 @@ struct _MMRect {
 
 typedef struct _MMRect MMRect;
 
-H_INLINE MMPoint MMPointMake(size_t x, size_t y)
+H_INLINE MMPoint MMPointMake(int x, int y)
 {
 	MMPoint point;
 	point.x = x;
 	point.y = y;
+	printf("[point make] %i %i", point.x, point.y);
 	return point;
 }
 

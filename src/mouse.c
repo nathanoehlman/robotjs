@@ -118,7 +118,7 @@ void moveMouse(MMPoint point)
 	mouseInput.mi.dwExtraInfo = 0;
 	mouseInput.mi.mouseData = 0;
 	SendInput(1, &mouseInput, sizeof(mouseInput));
-	
+
 #endif
 }
 
@@ -202,7 +202,7 @@ void clickMouse(MMMouseButton button)
  */
 void doubleClick(MMMouseButton button)
 {
-	
+
 #if defined(IS_MACOSX)
 
 	/* Double click for Mac. */
@@ -210,17 +210,17 @@ void doubleClick(MMMouseButton button)
 	const CGEventType mouseTypeDown = MMMouseToCGEventType(true, button);
 	const CGEventType mouseTypeUP = MMMouseToCGEventType(false, button);
 
-	CGEventRef event = CGEventCreateMouseEvent(NULL, mouseTypeDown, currentPos, kCGMouseButtonLeft);  
-	
-	/* Set event to double click. */						
-	CGEventSetIntegerValueField(event, kCGMouseEventClickState, 2);
-											
-	CGEventPost(kCGHIDEventTap, event);  
-																
-	CGEventSetType(event, mouseTypeUP);  
-	CGEventPost(kCGHIDEventTap, event);  
+	CGEventRef event = CGEventCreateMouseEvent(NULL, mouseTypeDown, currentPos, kCGMouseButtonLeft);
 
-	CFRelease(event); 
+	/* Set event to double click. */
+	CGEventSetIntegerValueField(event, kCGMouseEventClickState, 2);
+
+	CGEventPost(kCGHIDEventTap, event);
+
+	CGEventSetType(event, mouseTypeUP);
+	CGEventPost(kCGHIDEventTap, event);
+
+	CFRelease(event);
 
 #else
 
@@ -228,13 +228,13 @@ void doubleClick(MMMouseButton button)
 	clickMouse(button);
 	microsleep(200);
 	clickMouse(button);
-	
+
 #endif
 }
 
 /**
  * Function used to scroll the screen in the required direction.
- * This uses the magnitude to scroll the required amount in the direction. 
+ * This uses the magnitude to scroll the required amount in the direction.
  * TODO Requires further fine tuning based on the requirements.
  */
 void scrollMouse(int scrollMagnitude, MMMouseWheelDirection scrollDirection)
@@ -347,9 +347,9 @@ bool smoothlyMoveMouse(MMPoint endPoint)
 
 		/* Make sure we are in the screen boundaries!
 		 * (Strange things will happen if we are not.) */
-		if (pos.x >= screenSize.width || pos.y >= screenSize.height) {
-			return false;
-		}
+		// if (pos.x >= screenSize.width || pos.y >= screenSize.height) {
+			// return false;
+		// }
 
 		moveMouse(pos);
 
