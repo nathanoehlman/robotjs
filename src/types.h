@@ -34,7 +34,6 @@ H_INLINE MMPoint MMPointMake(int x, int y)
 	MMPoint point;
 	point.x = x;
 	point.y = y;
-	printf("[point make] %i %i", point.x, point.y);
 	return point;
 }
 
